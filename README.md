@@ -1,3 +1,1 @@
-# ensai-seminaire-bigdata-part1
-
-Partie 1: présentation onyxia
+# Présentation du package R parquetize à l'URDA
