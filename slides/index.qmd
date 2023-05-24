@@ -89,8 +89,8 @@ csv_to_parquet(
 
 - **Trois options pour les conversions :**  
 	:one: Convertir dans un [**fichier parquet unique**]{.orange}  
-	:two: Convertir dans des [**fichiers parquets multiples**]{.orange}  
-	:three: Convertir dans un répertoire avec des [**fichiers parquets partitionnés**]{.orange}    
+	:two: Convertir dans un répertoire avec des [**fichiers parquets partitionnés**]{.orange}    
+	:three: Convertir dans des [**fichiers parquets multiples**]{.orange}  
 	
 - **Autre paramètre** : [**sélectionner les variables**]{.orange} qui seront à conserver dans le fichier parquetisé (sans-doute pas utile pour l'URDA)
 
@@ -124,7 +124,7 @@ table_to_parquet(
 )
 ```
 
-## Fichier SAS -> fichier parquet unique
+## SAS -> fichier parquet unique
 
 Conversion d'un fichier SAS vers un fichier parquet [**unique**]{.orange}
 
@@ -138,15 +138,15 @@ table_to_parquet(
 #> ✔ Data are available in parquet file under /tmp/RtmpMT4bYz/file15781027e4d0.parquet
 ```
 
-## Fichier SAS -> fichier parquet multiple
+## SAS -> fichier parquet multiple [1/2]
 
-Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange}
+Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en fractionnant les données selon le nombre de lignes.
 
 ```{.r code-line-numbers="1-6"}
 table_to_parquet(
   path_to_file = system.file("examples","iris.sas7bdat", package = "haven"),
   path_to_parquet = tempfile(),
-  max_rows = 50,
+  max_rows = 50, # On fractionne la table iris toutes les 50 lignes
   encoding = "utf-8"
 )
 #> Reading data...
@@ -160,6 +160,23 @@ table_to_parquet(
 ```
 
 Le fichier parquet peut ensuite être reconstitué avec la fonction [rbind_parquet()](https://ddotta.github.io/parquetize/reference/rbind_parquet.html).
+
+## SAS -> fichier parquet multiple [2/2]
+
+Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en fractionnant les données en fonction de la consommation de mémoire vive.
+
+`table_to_parquet()` peut déterminer le nombre de lignes à placer dans un fichier en fonction de la consommation de mémoire avec l'argument `max_memory` exprimé en Mb.
+
+Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit environ 625 Mo) :
+
+```{.r}
+  table_to_parquet(
+  path_to_file = "myhugefile.sas7bdat",
+  path_to_parquet = tempdir(),
+  max_memory = 5000,
+  encoding = "utf-8"
+)
+```
 
 ## Une réflexion à avoir à l'échelle du fichier
 
