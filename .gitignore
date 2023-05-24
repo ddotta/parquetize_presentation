@@ -1,0 +1,5 @@
+/.quarto/
+/dev/
+*.Rhistory
+*.Rproj
+.Rproj.user

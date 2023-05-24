@@ -1,0 +1,164 @@
+---
+title: parquetize
+subtitle: |
+  **[Un package R\
+  pour convertir des données\
+  au format parquet]{.orange}**
+author: |
+  [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
+slide-number: true
+footer: |
+  Présentation à l'URDA
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: light.html
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+## Fonctionnalités de parquetize
+
+::: {.callout-note}
+Rappel sur une présentation du format parquet [ici](https://www.book.utilitr.org/03_fiches_thematiques/fiche_import_fichiers_parquet))
+:::
+
+- [**Convertir**]{.orange} des fichiers de différents formats [**en fichier parquet**]{.orange}
+
+- Plus-value de parquetize : [**faciliter la vie des utilisateurs**]{.orange} et [**fournir un cadre**]{.orange} 
+pour appliquer des règles lors des conversions de fichiers.
+
+- Les formats gérés : SAS, SPSS, Stata, csv, json, rds, fst, DBI...
+
+## 1ère démonstrastion avec des fichiers csv
+
+```{.r code-line-numbers="3-8"}
+# Conversion from a local csv file to a partitioned parquet file  :
+
+csv_to_parquet(
+  path_to_file = parquetize_example("region_2022.csv"),
+  path_to_parquet = tempfile(fileext = ".parquet"),
+  partition = "yes",
+  partitioning =  c("REG")
+)
+#> Reading data...
+#> Writing data...
+#> ✔ Data are available in parquet dataset under /tmp/RtmpMT4bYz/file157830a758fa.parquet
+#> Writing data..
+```
+
+![](img/Insee_example_csv.gif)
+
+## Documentation 
+
+- Un [site web](https://ddotta.github.io/parquetize/) dédié au package
+
+- Une [documentation](https://ddotta.github.io/parquetize/reference/index.html) qui accompagne chaque fonction.
+
+- Un [article](https://ddotta.github.io/parquetize/articles/aa-conversions.html) qui présente comment convertir un gros fichier lorsqu'on on est limité par la mémoire vive de son espace de travail.
+
+![](img/hex_parquetize.png){fig-align="center"}
+
+
+
+## Plusieurs paramétrages possibles [1/2]
+
+- **Trois options pour les conversions :**  
+	:one: Convertir dans un [**fichier parquet unique**]{.orange}  
+	:two: Convertir dans des [**fichiers parquets multiples**]{.orange}  
+	:three: Convertir dans un répertoire avec des [**fichiers parquets partitionnés**]{.orange}    
+	
+- **Autre paramètre** : [**sélectionner les variables**]{.orange} qui seront à conserver dans le fichier parquetisé (sans-doute pas utile pour l'URDA)
+
+## Plusieurs paramétrages possibles [2/2]
+
+- **Autre paramètre** : pour les fichiers volumineux, il est possible [**d'effectuer la conversion par "chunk"**]{.orange} soit par "bout" de table (cf. [la vignette](https://ddotta.github.io/parquetize/articles/aa-conversions.html)).
+
+- **Autre paramètre** : le [**mode de compression**]{.orange} choisi pour les fichiers parquet.
+
+## `table_to_parquet` pour les fichiers SAS
+
+Voici ses arguments :  
+
+```{.r code-line-numbers="1-5,8,10-17"}
+table_to_parquet(
+  path_to_file,
+  path_to_parquet,
+  max_memory = NULL,
+  max_rows = NULL,
+  chunk_size = lifecycle::deprecated(),
+  chunk_memory_size = lifecycle::deprecated(),
+  columns = "all",
+  by_chunk = lifecycle::deprecated(),
+  skip = 0,
+  partition = "no",
+  encoding = NULL,
+  chunk_memory_sample_lines = 10000,
+  compression = "snappy",
+  compression_level = NULL,
+  ...
+)
+```
+
+## Fichier SAS -> fichier parquet unique
+
+Conversion d'un fichier SAS vers un fichier parquet [**unique**]{.orange}
+
+```{.r code-line-numbers="1-4"}
+table_to_parquet(
+  path_to_file = system.file("examples","iris.sas7bdat", package = "haven"),
+  path_to_parquet = tempfile(fileext = ".parquet")
+)
+#> Reading data...
+#> Writing data...
+#> ✔ Data are available in parquet file under /tmp/RtmpMT4bYz/file15781027e4d0.parquet
+```
+
+## Fichier SAS -> fichier parquet multiple
+
+Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange}
+
+```{.r code-line-numbers="1-6"}
+table_to_parquet(
+  path_to_file = system.file("examples","iris.sas7bdat", package = "haven"),
+  path_to_parquet = tempfile(),
+  max_rows = 50,
+  encoding = "utf-8"
+)
+#> Reading data...
+#> Writing file1578a575aa3-1-50.parquet...
+#> Reading data...
+#> Writing file1578a575aa3-51-100.parquet...
+#> Reading data...
+#> Writing file1578a575aa3-101-150.parquet...
+#> Reading data...
+#> ✔ Data are available in parquet dataset under /tmp/RtmpMT4bYz/file1578a575aa3/
+```
+
+Le fichier parquet peut ensuite être reconstitué avec la fonction [rbind_parquet()](https://ddotta.github.io/parquetize/reference/rbind_parquet.html).
+
+## Une réflexion à avoir à l'échelle du fichier
+
+- A partir de quelle taille faut-il [**partitionner**]{.orange} les bases parquet ?
+- Etre [**attentif aux temps machine**]{.orange} très importants sur AUS
+- Etablir [**une échelle de priorité**]{.orange} dans les opérations de conversion
+
+## parquetize en accord avec les bonnes pratiques
+
+Le package parquetize peut être l'occasion de mettre en place certaines bonnes pratiques :
+
+- [**Pas de valeurs manquantes**]{.orange} dans les variables de partitionnement
+- Utiliser le mode de compression [**snappy**]{.orange} sauf pour le stockage de long terme auquel il 
+faut privilégier le mode [**gzip**]{.orange} ([source](https://github.com/pengfei99/ParquetDataFormat#parquet-as-long-term-storage-data-format)).
+- D'autres bonnes pratiques...
