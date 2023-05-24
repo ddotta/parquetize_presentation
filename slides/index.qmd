@@ -4,8 +4,7 @@ subtitle: |
   **[Un package R\
   pour convertir des données\
   au format parquet]{.orange}**
-author: |
-  [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
+author: Damien Dotta et Nicolas Chuche
 slide-number: true
 footer: |
   Présentation à l'URDA
@@ -40,6 +39,20 @@ Rappel sur une présentation du format parquet [ici](https://www.book.utilitr.or
 pour appliquer des règles lors des conversions de fichiers.
 
 - Les formats gérés : SAS, SPSS, Stata, csv, json, rds, fst, DBI...
+
+## Résumé des formats gérés
+
+| Format  de fichier| Fonctions de parquetize                                                                   	|
+|------------------	|-------------------------------------------------------------------------------------------	|
+| SAS, SPSS, Stata 	| [table_to_parquet](https://ddotta.github.io/parquetize/reference/table_to_parquet.html)   	|
+| csv              	| [csv_to_parquet](https://ddotta.github.io/parquetize/reference/csv_to_parquet.html)       	|
+| rds              	| [rds_to_parquet](https://ddotta.github.io/parquetize/reference/rds_to_parquet.html)       	|
+| fst              	| [fst_to_parquet](https://ddotta.github.io/parquetize/reference/fst_to_parquet.html)       	|
+| sqlite, db, sdb 	| [sqlite_to_parquet](https://ddotta.github.io/parquetize/reference/sqlite_to_parquet.html) 	|
+| DBI databases    	| [DBI_to_parquet](https://ddotta.github.io/parquetize/reference/DBI_to_parquet.html)       	|
+| json             	| [json_to_parquet](https://ddotta.github.io/parquetize/reference/json_to_parquet.html)     	|
+
+: Les formats supportés par parquetize
 
 ## 1ère démonstrastion avec des fichiers csv
 
