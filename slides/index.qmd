@@ -195,8 +195,10 @@ faut privilégier le mode [**gzip**]{.orange} ([source](https://github.com/pengf
 
 ## un projet open source
 
-- Un package déposé sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
-- Le [dépôt github](https://github.com/ddotta/parquetize) du projet
-- Qui a besoin de vous pour être enrichi ou pour nous faire remonter des problèmes => par [ici](https://github.com/ddotta/parquetize/issues)
+Un package déposé sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
 
-- Les auteurs : [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
+Le [dépôt github](https://github.com/ddotta/parquetize) du projet
+
+Qui a besoin de vous pour être enrichi ou pour nous faire remonter des problèmes => par [ici](https://github.com/ddotta/parquetize/issues) 🚀
+
+Les auteurs : [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
