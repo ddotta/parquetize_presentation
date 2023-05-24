@@ -161,4 +161,4 @@ Le package parquetize peut être l'occasion de mettre en place certaines bonnes 
 - [**Pas de valeurs manquantes**]{.orange} dans les variables de partitionnement
 - Utiliser le mode de compression [**snappy**]{.orange} sauf pour le stockage de long terme auquel il 
 faut privilégier le mode [**gzip**]{.orange} ([source](https://github.com/pengfei99/ParquetDataFormat#parquet-as-long-term-storage-data-format)).
-- D'autres bonnes pratiques...
+- D'autres bonnes pratiques... (à compléter)
