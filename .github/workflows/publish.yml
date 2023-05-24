@@ -15,10 +15,22 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render Quarto
+        uses: quarto-dev/quarto-actions/render@v2
         with:
-          target: gh-pages
-          render: slides/index.qmd
+          path: slides/index.qmd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish html
+        run: |
+          mkdir build
+          cp -R slides/* build
+
+      - name: Push to gh-pages branch
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
