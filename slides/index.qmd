@@ -71,6 +71,8 @@ csv_to_parquet(
 #> Writing data..
 ```
 
+. . .
+
 ![](img/Insee_example_csv.gif)
 
 ## Documentation 
@@ -167,7 +169,7 @@ Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en f
 
 `table_to_parquet()` peut déterminer le nombre de lignes à placer dans un fichier en fonction de la consommation de mémoire avec l'argument `max_memory` exprimé en Mb.
 
-Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit environ 625 Mo) :
+Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit 625 Mo) :
 
 ```{.r}
   table_to_parquet(
@@ -193,7 +195,7 @@ Le package parquetize peut être l'occasion de mettre en place certaines bonnes 
 faut privilégier le mode [**gzip**]{.orange} ([source](https://github.com/pengfei99/ParquetDataFormat#parquet-as-long-term-storage-data-format)).
 - D'autres bonnes pratiques... (à compléter)
 
-## un projet open source
+## Un projet open source
 
 <br>
 Un package déposé sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
