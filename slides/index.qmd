@@ -185,15 +185,20 @@ Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit 625 Mo) :
 - A partir de quelle taille faut-il [**partitionner**]{.orange} les bases parquet ?
 - Etre [**attentif aux temps machine**]{.orange} très importants sur AUS
 - Etablir [**une échelle de priorité**]{.orange} dans les opérations de conversion
+- Éviter les fichiers de moins de 20 MB ou de plus de 2 MB. [^1]
+- Éviter d’avoir plus de 10 000 partitions.
 
-## parquetize en accord avec les bonnes pratiques
+[^1]: https://arrow.apache.org/docs/r/articles/dataset.html#partitioning-performance-considerations
+
+## parquetize et les bonnes pratiques
 
 Le package parquetize peut être l'occasion de mettre en place certaines bonnes pratiques :
 
 - [**Pas de valeurs manquantes**]{.orange} dans les variables de partitionnement
-- Utiliser le mode de compression [**snappy**]{.orange} sauf pour le stockage de long terme auquel il 
-faut privilégier le mode [**gzip**]{.orange} ([source](https://github.com/pengfei99/ParquetDataFormat#parquet-as-long-term-storage-data-format)).
-- D'autres bonnes pratiques... (à compléter)
+- Privilégier le mode de compression [**snappy**]{.orange}.
+- Éviter les fichiers partitionnés [**de moins de 20 MB ou de plus de 2 GB**]{.orange}. ^[https://arrow.apache.org/docs/r/articles/dataset.html#partitioning-performance-considerations]
+- Éviter d’avoir [**plus de 10 000 partitions**]{.orange}.
+ 
 
 ## Un projet open source
 
