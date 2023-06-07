@@ -169,13 +169,13 @@ Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en f
 
 `table_to_parquet()` peut déterminer le nombre de lignes à placer dans un fichier en fonction de la consommation de mémoire avec l'argument `max_memory` exprimé en Mb.
 
-Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit 625 Mo) :
+Le code suivant fractionne un fichier volumineux en plusieurs fichiers de 2 000 Mb (soit 250 Mo) :
 
 ```{.r}
   table_to_parquet(
   path_to_file = "myhugefile.sas7bdat",
   path_to_parquet = tempdir(),
-  max_memory = 5000,
+  max_memory = 2000,
   encoding = "utf-8"
 )
 ```
@@ -185,8 +185,6 @@ Le code suivant fractionne un fichier volumineux de 5 000 Mb (soit 625 Mo) :
 - A partir de quelle taille faut-il [**partitionner**]{.orange} les bases parquet ?
 - Etre [**attentif aux temps machine**]{.orange} très importants sur AUS
 - Etablir [**une échelle de priorité**]{.orange} dans les opérations de conversion
-- Éviter les fichiers de moins de 20 MB ou de plus de 2 MB. [^1]
-- Éviter d’avoir plus de 10 000 partitions.
 
 [^1]: https://arrow.apache.org/docs/r/articles/dataset.html#partitioning-performance-considerations
 
