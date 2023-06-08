@@ -94,9 +94,9 @@ csv_to_parquet(
 	:two: Convertir dans un répertoire avec des [**fichiers parquets partitionnés**]{.orange}    
 	:three: Convertir dans des [**fichiers parquets multiples**]{.orange}  
 	
-- **Autre paramètre** : [**sélectionner les variables**]{.orange} qui seront à conserver dans le fichier parquetisé (sans-doute pas utile pour l'URDA)
-
 ## Plusieurs paramétrages possibles [2/2]
+
+- **Autre paramètre** : [**sélectionner les variables**]{.orange} qui seront à conserver dans le fichier parquetisé (sans-doute pas utile pour l'URDA)
 
 - **Autre paramètre** : pour les fichiers volumineux, il est possible [**d'effectuer la conversion par "chunk"**]{.orange} soit par "bout" de table (cf. [la vignette](https://ddotta.github.io/parquetize/articles/aa-conversions.html)).
 
