@@ -106,7 +106,7 @@ csv_to_parquet(
 
 Voici ses arguments :  
 
-```{.r code-line-numbers="1-5,8,10-17"}
+```{.r code-line-numbers="1-5,8,11-17"}
 table_to_parquet(
   path_to_file,
   path_to_parquet,
