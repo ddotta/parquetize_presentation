@@ -3,5 +3,3 @@
 *.Rhistory
 *.Rproj
 .Rproj.user
-
-/.luarc.json
