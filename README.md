@@ -4,4 +4,4 @@ Lien vers les [slides](https://ddotta.github.io/parquetize_presentation/)
 
 Pour en savoir plus, voir [ici](https://github.com/ddotta/parquetize)
 
-Juin 2023
+Juin - Juillet 2023
