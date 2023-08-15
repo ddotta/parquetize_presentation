@@ -201,7 +201,7 @@ Le package parquetize peut être l'occasion de mettre en place certaines bonnes 
 ## Un projet open source
 
 <br>
-Un package déposé sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
+Un package disponible sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
 
 Le [dépôt github](https://github.com/ddotta/parquetize) du projet
 
