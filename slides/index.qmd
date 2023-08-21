@@ -81,7 +81,7 @@ csv_to_parquet(
 
 - Une [documentation](https://ddotta.github.io/parquetize/reference/index.html) qui accompagne chaque fonction.
 
-- Un [article](https://ddotta.github.io/parquetize/articles/aa-conversions.html) qui présente comment convertir un gros fichier lorsqu'on on est limité par la mémoire vive de son espace de travail.
+- Un [article](https://ddotta.github.io/parquetize/articles/aa-conversions.html) qui présente comment convertir un gros fichier lorsqu'on on est limité par la mémoire vive (RAM) de son espace de travail.
 
 ![](img/hex_parquetize.png){fig-align="center"}
 
