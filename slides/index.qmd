@@ -91,7 +91,7 @@ csv_to_parquet(
 
 - **Trois options pour les conversions :**  
 	:one: Convertir dans un [**fichier parquet unique**]{.orange}  
-	:two: Convertir dans un répertoire avec des [**fichiers parquets partitionnés**]{.orange}    
+	:two: Convertir dans un répertoire/dossier avec des [**fichiers parquets partitionnés**]{.orange}    
 	:three: Convertir dans des [**fichiers parquets multiples**]{.orange}  
 	
 ## Plusieurs paramétrages possibles [2/2]
