@@ -210,3 +210,7 @@ Qui a besoin de vous pour être enrichi ou pour nous faire remonter des problèm
 <br>
 
 Les auteurs : [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
+
+<br>
+
+Merci
