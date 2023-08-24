@@ -12,7 +12,6 @@ footer: |
 lang: fr-FR
 # for blind readers:
 slide-tone: false
-# for @olevitt:
 chalkboard: # press the B key to toggle chalkboard
   theme: whiteboard
 # uncomment to use the multiplex mode:
