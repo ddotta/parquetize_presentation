@@ -8,7 +8,7 @@ author: Damien Dotta et Nicolas Chuche
 slide-number: true
 footer: |
   Présentation à l'URDA
-# uncomment for French presentations:
+presentations:
 lang: fr-FR
 # for blind readers:
 slide-tone: false
