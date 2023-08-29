@@ -29,7 +29,7 @@ from: markdown+emoji
 ## Fonctionnalités de parquetize
 
 ::: {.callout-note}
-Rappel sur une présentation du format parquet [ici](https://www.book.utilitr.org/03_fiches_thematiques/fiche_import_fichiers_parquet)
+Quelques rappels sur le format parquet [ici](https://www.book.utilitr.org/03_fiches_thematiques/fiche_import_fichiers_parquet)
 :::
 
 - [**Convertir**]{.orange} des fichiers de différents formats [**en fichier parquet**]{.orange}
