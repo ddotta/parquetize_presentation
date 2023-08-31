@@ -7,7 +7,7 @@ subtitle: |
 author: Damien Dotta et Nicolas Chuche
 slide-number: true
 footer: |
-  Présentation à l'URDA
+  Présentation à l'URDA (Insee)
 presentations:
 lang: fr-FR
 # for blind readers:
