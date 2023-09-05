@@ -32,7 +32,7 @@ from: markdown+emoji
 Quelques rappels sur le format parquet [ici](https://www.book.utilitr.org/03_fiches_thematiques/fiche_import_fichiers_parquet)
 :::
 
-- [**Convertir**]{.orange} des fichiers de différents formats [**en fichier parquet**]{.orange}
+- [**Convertir**]{.orange} des fichiers de différents formats [**en fichiers parquet**]{.orange}
 
 - Plus-value de parquetize : [**faciliter la vie des utilisateurs**]{.orange} et [**fournir un cadre**]{.orange} 
 pour appliquer des règles lors des conversions de fichiers.
