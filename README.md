@@ -7,3 +7,5 @@ Pour en savoir plus, voir [la documentation du package](https://github.com/ddott
 Juin 2023
 
 Auteur : Damien Dotta
+
+Voir [ici](https://github.com/InseeFrLab/onyxia-quarto) pour le template utilisé.
