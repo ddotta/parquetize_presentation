@@ -6,6 +6,6 @@ Pour en savoir plus, voir [la documentation du package](https://github.com/ddott
 
 Juin 2023
 
-Auteur : Damien Dotta
+Auteur : [Damien Dotta](https://github.com/ddotta)
 
 Voir [ici](https://github.com/InseeFrLab/onyxia-quarto) pour le template utilisé.
