@@ -1,4 +1,4 @@
-# Présentation du package R {parquetize} à l'URDA (Insee)
+# Présentation du package R {parquetize} à l'INSEE
 
 Lien vers les [slides](https://ddotta.github.io/parquetize_presentation/).
 
