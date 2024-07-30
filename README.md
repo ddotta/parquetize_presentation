@@ -4,7 +4,7 @@ Voir les [slides](https://ddotta.github.io/parquetize_presentation/)
 
 Pour en savoir plus, voir [la documentation du package R](https://github.com/ddotta/parquetize)
 
-Date : Juin 2023.
+Date : Juin 2023
 
 Auteur : [Damien Dotta](https://github.com/ddotta) (SSP - Agreste - France).
 
