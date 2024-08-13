@@ -1,6 +1,6 @@
 # Présentation du package R `parquetize` à l'Insee
 
-Voir les [slides](https://ddotta.github.io/parquetize_presentation/)
+Voir les [slides](https://ddotta.github.io/parquetize_presentation/).
 
 Pour en savoir plus, voir [la documentation officielle du package R](https://github.com/ddotta/parquetize)
 
