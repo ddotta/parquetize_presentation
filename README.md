@@ -2,7 +2,7 @@
 
 Voir les [slides](https://ddotta.github.io/parquetize_presentation/).
 
-Pour en savoir plus, voir [la documentation officielle du package R en anglais](https://github.com/ddotta/parquetize).
+Pour en savoir plus, cf. [la documentation officielle du package R en anglais](https://github.com/ddotta/parquetize).
 
 Date : Juin 2023
 
