@@ -7,3 +7,4 @@ Pour en savoir plus, cf. [la documentation officielle du package R en anglais](h
 Auteur : [Damien Dotta](https://github.com/ddotta) (France - SSM Agriculture).
 
 Voir [ici](https://github.com/InseeFrLab/onyxia-quarto) pour le template utilisé par le SSP Cloud/Onyxia.
+
