@@ -1,0 +1,215 @@
+---
+title: parquetize
+subtitle: |
+  **[Un package R\
+  pour convertir des données\
+  au format parquet]{.orange}**
+author: Damien Dotta et Nicolas Chuche
+slide-number: true
+footer: |
+  Présentation à l'URDA (Insee)
+presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: index.html
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+## Fonctionnalités de parquetize
+
+::: {.callout-note}
+Quelques rappels sur le format parquet [ici](https://www.book.utilitr.org/03_fiches_thematiques/fiche_import_fichiers_parquet)
+:::
+
+- [**Convertir**]{.orange} des fichiers de différents formats [**en fichiers parquet**]{.orange}
+
+- Plus-value de parquetize : [**faciliter la vie des utilisateurs**]{.orange} et [**fournir un cadre**]{.orange} 
+pour appliquer des règles lors des conversions de fichiers.
+
+- Les formats gérés : SAS, SPSS, Stata, csv, json, rds, fst, DBI...
+
+## Résumé des formats gérés
+
+| Format  de fichier| Fonctions de parquetize                                                                   	|
+|------------------	|-------------------------------------------------------------------------------------------	|
+| SAS, SPSS, Stata 	| [table_to_parquet](https://ddotta.github.io/parquetize/reference/table_to_parquet.html)   	|
+| csv              	| [csv_to_parquet](https://ddotta.github.io/parquetize/reference/csv_to_parquet.html)       	|
+| rds              	| [rds_to_parquet](https://ddotta.github.io/parquetize/reference/rds_to_parquet.html)       	|
+| fst              	| [fst_to_parquet](https://ddotta.github.io/parquetize/reference/fst_to_parquet.html)       	|
+| sqlite, db, sdb 	| [sqlite_to_parquet](https://ddotta.github.io/parquetize/reference/sqlite_to_parquet.html) 	|
+| DBI databases    	| [DBI_to_parquet](https://ddotta.github.io/parquetize/reference/DBI_to_parquet.html)       	|
+| json             	| [json_to_parquet](https://ddotta.github.io/parquetize/reference/json_to_parquet.html)     	|
+
+: Les formats supportés par parquetize
+
+## 1ère démonstrastion avec des fichiers csv
+
+```{.r code-line-numbers="3-8"}
+# Conversion from a local csv file to a partitioned parquet file  :
+
+csv_to_parquet(
+  path_to_file = parquetize_example("region_2022.csv"),
+  path_to_parquet = tempfile(fileext = ".parquet"),
+  partition = "yes",
+  partitioning =  c("REG")
+)
+#> Reading data...
+#> Writing data...
+#> ✔ Data are available in parquet dataset under /tmp/RtmpMT4bYz/file157830a758fa.parquet
+#> Writing data..
+```
+
+. . .
+
+![](img/Insee_example_csv.gif)
+
+## Documentation 
+
+- Un [site web](https://ddotta.github.io/parquetize/) dédié au package
+
+- Une [documentation](https://ddotta.github.io/parquetize/reference/index.html) qui accompagne chaque fonction.
+
+- Un [article](https://ddotta.github.io/parquetize/articles/aa-conversions.html) qui présente comment convertir un gros fichier lorsqu'on on est limité par la mémoire vive (RAM) de son espace de travail.
+
+![](img/hex_parquetize.png){fig-align="center"}
+
+
+
+## Plusieurs paramétrages possibles [1/2]
+
+- **Trois options pour les conversions :**  
+	:one: Convertir dans un [**fichier parquet unique**]{.orange}  
+	:two: Convertir dans un répertoire/dossier avec des [**fichiers parquets partitionnés**]{.orange}    
+	:three: Convertir dans des [**fichiers parquets multiples**]{.orange}  
+	
+## Plusieurs paramétrages possibles [2/2]
+
+- **Autre paramètre** : [**sélectionner les variables**]{.orange} qui seront à conserver dans le fichier parquetisé (sans-doute pas utile pour l'URDA)
+
+- **Autre paramètre** : pour les fichiers volumineux, il est possible [**d'effectuer la conversion par "chunk"**]{.orange} soit par "bout" de table (cf. [la vignette](https://ddotta.github.io/parquetize/articles/aa-conversions.html)).
+
+- **Autre paramètre** : le [**mode de compression**]{.orange} choisi pour les fichiers parquet.
+
+## `table_to_parquet` pour les fichiers SAS
+
+Voici ses arguments :  
+
+```{.r code-line-numbers="1-5,8,11-17"}
+table_to_parquet(
+  path_to_file,
+  path_to_parquet,
+  max_memory = NULL,
+  max_rows = NULL,
+  chunk_size = lifecycle::deprecated(),
+  chunk_memory_size = lifecycle::deprecated(),
+  columns = "all",
+  by_chunk = lifecycle::deprecated(),
+  skip = 0,
+  partition = "no",
+  encoding = NULL,
+  chunk_memory_sample_lines = 10000,
+  compression = "snappy",
+  compression_level = NULL,
+  ...
+)
+```
+
+## SAS -> fichier parquet unique
+
+Conversion d'un fichier SAS vers un fichier parquet [**unique**]{.orange}
+
+```{.r code-line-numbers="1-4"}
+table_to_parquet(
+  path_to_file = system.file("examples","iris.sas7bdat", package = "haven"),
+  path_to_parquet = tempfile(fileext = ".parquet")
+)
+#> Reading data...
+#> Writing data...
+#> ✔ Data are available in parquet file under /tmp/RtmpMT4bYz/file15781027e4d0.parquet
+```
+
+## SAS -> fichier parquet multiple [1/2]
+
+Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en fractionnant les données selon le nombre de lignes.
+
+```{.r code-line-numbers="1-6"}
+table_to_parquet(
+  path_to_file = system.file("examples","iris.sas7bdat", package = "haven"),
+  path_to_parquet = tempfile(),
+  max_rows = 50, # On fractionne la table iris toutes les 50 lignes
+  encoding = "utf-8"
+)
+#> Reading data...
+#> Writing file1578a575aa3-1-50.parquet...
+#> Reading data...
+#> Writing file1578a575aa3-51-100.parquet...
+#> Reading data...
+#> Writing file1578a575aa3-101-150.parquet...
+#> Reading data...
+#> ✔ Data are available in parquet dataset under /tmp/RtmpMT4bYz/file1578a575aa3/
+```
+
+Le fichier parquet peut ensuite être reconstitué avec la fonction [rbind_parquet()](https://ddotta.github.io/parquetize/reference/rbind_parquet.html).
+
+## SAS -> fichier parquet multiple [2/2]
+
+Conversion d'un fichier SAS vers un fichier parquet [**multiple**]{.orange} en fractionnant les données en fonction de la consommation de mémoire vive.
+
+`table_to_parquet()` peut déterminer le nombre de lignes à placer dans un fichier en fonction de la consommation de mémoire avec l'argument `max_memory` exprimé en Mb.
+
+Le code suivant fractionne un fichier volumineux en plusieurs fichiers de 2 000 Mb (soit 250 Mo) :
+
+```{.r}
+  table_to_parquet(
+  path_to_file = "myhugefile.sas7bdat",
+  path_to_parquet = tempdir(),
+  max_memory = 2000,
+  encoding = "utf-8"
+)
+```
+
+## Une réflexion à avoir à l'échelle du fichier
+
+- A partir de quelle taille faut-il [**partitionner**]{.orange} les bases parquet ?
+- Etre [**attentif aux temps machine**]{.orange} très importants sur AUS
+- Etablir [**une échelle de priorité**]{.orange} dans les opérations de conversion
+
+[^1]: https://arrow.apache.org/docs/r/articles/dataset.html#partitioning-performance-considerations
+
+## parquetize et les bonnes pratiques
+
+Le package parquetize peut être l'occasion de mettre en place certaines bonnes pratiques :
+
+- [**Pas de valeurs manquantes**]{.orange} dans les variables de partitionnement
+- Privilégier le mode de compression [**snappy**]{.orange}.
+- Éviter les fichiers partitionnés [**de moins de 20 MB ou de plus de 2 GB**]{.orange}. ^[https://arrow.apache.org/docs/r/articles/dataset.html#partitioning-performance-considerations]
+- Éviter d’avoir [**plus de 10 000 partitions**]{.orange}.
+ 
+
+## Un projet open source
+
+<br>
+Un package disponible sur le [CRAN](https://cran.r-project.org/web/packages/parquetize/index.html)
+
+Le [dépôt github](https://github.com/ddotta/parquetize) du projet
+
+Qui a besoin de vous pour être enrichi ou pour nous faire remonter des problèmes => par [ici](https://github.com/ddotta/parquetize/issues) 🚀
+
+<br>
+
+Les auteurs : [Damien Dotta](https://github.com/ddotta) et [Nicolas Chuche](https://github.com/nbc)
+
+<br>
+
+Merci
